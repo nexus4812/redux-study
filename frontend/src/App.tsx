@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
+
+import {FaSignInAlt} from 'react-icons/fa';
+import TaskDetails from "./features/tasks/TaskDetails";
+import TaskInput from "./features/tasks/TaskInput";
+import TaskList from "./features/tasks/TaskList";
 
 function App() {
+
+  const Logout = () => {
+      localStorage.removeItem('localJWT');
+      window.location.href = '/';
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className={styles.containerTasks}>
+        <div className={styles.appTasks}>
+          <button onClick={Logout} className={styles.signBtn}>
+            <FaSignInAlt />
+          </button>
+            <TaskInput />
+            <TaskList />
+        </div>
+        <div className={styles.appDetails}>
+            <TaskDetails />
+        </div>
+      </div>
   );
 }
 
